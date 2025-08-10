@@ -34,6 +34,11 @@ import {
   Settings,
   HeadphonesIcon,
   Building2,
+  Gauge,
+  BellRing,
+  Thermometer,
+  Droplets,
+  Truck,
 } from "lucide-react"
 
 export default function NextLogFullServicePage() {
@@ -102,7 +107,6 @@ ${formData.message}
       }, 800)
 
       setFormStatus("success")
-
       setTimeout(() => {
         setFormStatus("idle")
         setFormData({
@@ -184,7 +188,6 @@ ${formData.message}
     },
   ]
 
-  // Use explicit class strings (not interpolated colors) for Tailwind detection
   const compactStats = [
     {
       number: "5,247",
@@ -503,12 +506,12 @@ ${formData.message}
                   </span>
                 </a>
                 <a
-                  href="#demo"
+                  href="#drivers-app"
                   className="group relative border-2 border-orange-400 text-orange-400 px-8 py-4 rounded-xl font-bold text-base hover:bg-orange-400 hover:text-white transition-all duration-300 text-center"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     <Play size={20} />
-                    Watch Demo
+                    See Driver App
                   </span>
                 </a>
               </div>
@@ -588,6 +591,159 @@ ${formData.message}
                 <div className="text-gray-300 font-medium text-xs">{s.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW: Driver App Showcase + Why Choose NextLog ELD */}
+      <section id="drivers-app" className="py-24 px-4 bg-gradient-to-b from-[#0f1419] to-[#1a2332]">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            {/* Content */}
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/40 rounded-full px-6 py-2.5 text-orange-300 font-bold">
+                <Truck size={20} />
+                <span>Why Choose NextLog ELD?</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white">
+                More Control, Safety, and Efficiency on the Road
+              </h2>
+              <p className="text-lg text-gray-300">
+                Our advanced ELD is built to give trucking companies and drivers complete visibility. With real-time
+                monitoring and smart automation, you can focus on driving while we handle the compliance.
+              </p>
+
+              <div className="space-y-4">
+                {/* Feature */}
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                    <MapPin className="text-orange-400" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Live monitoring of driver logs, status & location</p>
+                    <p className="text-gray-400 text-sm">
+                      Always know where your drivers are, their status, and log compliance — in real time.
+                    </p>
+                  </div>
+                </div>
+                {/* Feature */}
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                    <Gauge className="text-orange-400" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Real-time truck speed tracking</p>
+                    <p className="text-gray-400 text-sm">
+                      Track vehicle speed instantly to improve safety and reduce violations.
+                    </p>
+                  </div>
+                </div>
+                {/* Feature */}
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                    <BellRing className="text-orange-400" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Automatic driver reminders for missed actions</p>
+                    <p className="text-gray-400 text-sm">
+                      No more forgotten Certify, trailer number, or Shipping ID—automatic alerts keep logs complete.
+                    </p>
+                  </div>
+                </div>
+                {/* Feature */}
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                    <Droplets className="text-orange-400" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Fuel level tracking</p>
+                    <p className="text-gray-400 text-sm">
+                      Monitor fuel usage, plan refueling, and prevent unnecessary downtime.
+                    </p>
+                  </div>
+                </div>
+                {/* Feature */}
+                <div className="flex gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-orange-500/15 flex items-center justify-center flex-shrink-0">
+                    <Thermometer className="text-orange-400" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white font-semibold">Engine temperature & oil level monitoring</p>
+                    <p className="text-gray-400 text-sm">
+                      Stay ahead of potential breakdowns with instant access to critical truck health data.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 p-5 rounded-xl border border-orange-400/30 bg-gradient-to-r from-[#1a2332] to-[#0f1419]">
+                <p className="text-gray-200">
+                  With NextLog ELD, compliance becomes effortless, safety improves, and you gain complete visibility
+                  over your fleet.
+                </p>
+              </div>
+
+              <div className="flex gap-3">
+                <a
+                  href="#pricing"
+                  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 py-3 rounded-lg font-bold text-sm hover:from-orange-600 hover:to-orange-700 transition-all shadow-lg hover:shadow-orange-500/30"
+                >
+                  Get Started
+                  <ArrowRight size={18} />
+                </a>
+                <a
+                  href="tg://resolve?domain=safetysupport2025"
+                  className="inline-flex items-center justify-center gap-2 border-2 border-orange-400 text-orange-400 px-6 py-3 rounded-lg font-bold text-sm hover:bg-orange-400 hover:text-white transition-all"
+                >
+                  Talk to Expert
+                </a>
+              </div>
+            </div>
+
+            {/* Screens Gallery */}
+            <div className="lg:pl-6">
+              <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl p-4">
+                <div className="flex items-center gap-2 mb-3 px-1">
+                  <div className="w-2 h-2 rounded-full bg-red-400"></div>
+                  <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                  <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                  <span className="text-xs text-gray-400 ml-auto">Driver App Screens</span>
+                </div>
+                {/* Horizontal scroll on mobile, grid on desktop */}
+                <div className="overflow-x-auto lg:overflow-visible">
+                  <div className="flex lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-4 min-w-max lg:min-w-0">
+                    {[
+                      { src: "/images/drivers-app/home.jpg", label: "Home" },
+                      { src: "/images/drivers-app/logs.jpg", label: "Logs" },
+                      { src: "/images/drivers-app/vehicle.jpg", label: "Vehicle" },
+                      { src: "/images/drivers-app/duty-status.jpg", label: "Duty Status" },
+                      { src: "/images/drivers-app/quick-notes.jpg", label: "Quick Notes" },
+                    ].map((shot, i) => (
+                      <div
+                        key={i}
+                        className="relative bg-[#0f1419] rounded-xl border border-gray-700/60 overflow-hidden shadow-xl w-[220px] sm:w-[240px] lg:w-auto"
+                        aria-label={`App screenshot: ${shot.label}`}
+                      >
+                        <Image
+                          src={shot.src || "/placeholder.svg"}
+                          alt={`NextLog Driver App – ${shot.label} screen`}
+                          width={400}
+                          height={800}
+                          className="w-full h-auto object-cover"
+                          priority={i < 2}
+                        />
+                        <div className="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
+                          {shot.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <p className="text-xs text-gray-400 mt-3 text-center">
+                  Real app screenshots showcasing the driver experience.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
