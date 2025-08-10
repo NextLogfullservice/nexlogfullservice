@@ -79,7 +79,6 @@ export default function NextLogFullServicePage() {
     setFormStatus("loading")
 
     try {
-      // Format the message for WhatsApp and Telegram
       const message = `🚛 NEW CONSULTATION REQUEST 🚛
 
 👤 Name: ${formData.name}
@@ -94,17 +93,13 @@ ${formData.message}
 ⏰ Submitted: ${new Date().toLocaleString()}
 🌐 Source: NextLog FullService Website`
 
-      // Send to WhatsApp (opens WhatsApp with pre-filled message)
       const whatsappUrl = `https://wa.me/996508228328?text=${encodeURIComponent(message)}`
-
-      // Send to Telegram (opens Telegram with pre-filled message)
       const telegramUrl = `https://t.me/safetysupport2025?text=${encodeURIComponent(message)}`
 
-      // Open both WhatsApp and Telegram in new tabs
       window.open(whatsappUrl, "_blank")
       setTimeout(() => {
         window.open(telegramUrl, "_blank")
-      }, 1000) // Small delay to prevent popup blocking
+      }, 800)
 
       setFormStatus("success")
 
@@ -118,14 +113,11 @@ ${formData.message}
           fleetSize: "",
           message: "",
         })
-      }, 3000)
+      }, 2500)
     } catch (error) {
       console.error("Error sending message:", error)
       setFormStatus("error")
-
-      setTimeout(() => {
-        setFormStatus("idle")
-      }, 3000)
+      setTimeout(() => setFormStatus("idle"), 2500)
     }
   }
 
@@ -192,6 +184,95 @@ ${formData.message}
     },
   ]
 
+  // Use explicit class strings (not interpolated colors) for Tailwind detection
+  const compactStats = [
+    {
+      number: "5,247",
+      label: "Active Carriers",
+      icon: Building2,
+      bg: "from-orange-400/20 to-orange-600/20",
+      text: "text-orange-400",
+    },
+    {
+      number: "99.97%",
+      label: "System Uptime",
+      icon: Shield,
+      bg: "from-green-400/20 to-green-600/20",
+      text: "text-green-400",
+    },
+    {
+      number: "47 sec",
+      label: "Avg Response",
+      icon: Clock,
+      bg: "from-blue-400/20 to-blue-600/20",
+      text: "text-blue-400",
+    },
+    {
+      number: "15",
+      label: "Languages",
+      icon: Globe,
+      bg: "from-purple-400/20 to-purple-600/20",
+      text: "text-purple-400",
+    },
+    {
+      number: "$2.3M",
+      label: "Fines Prevented",
+      icon: AlertCircle,
+      bg: "from-red-400/20 to-red-600/20",
+      text: "text-red-400",
+    },
+    {
+      number: "24/7",
+      label: "Expert Support",
+      icon: HeadphonesIcon,
+      bg: "from-cyan-400/20 to-cyan-600/20",
+      text: "text-cyan-400",
+    },
+  ] as const
+
+  const contactTiles = [
+    {
+      icon: MessageCircle,
+      title: "Telegram Support",
+      description: "Instant messaging with our experts",
+      contact: "@safetysupport2025",
+      link: "tg://resolve?domain=safetysupport2025",
+      bg: "from-blue-500/20 to-blue-600/20",
+      text: "text-blue-400",
+      badge: "Fastest Response",
+    },
+    {
+      icon: Phone,
+      title: "WhatsApp Professional",
+      description: "Voice & video calls available",
+      contact: "+996 508 228 328",
+      link: "https://wa.me/996508228328",
+      bg: "from-green-500/20 to-green-600/20",
+      text: "text-green-400",
+      badge: "Voice Support",
+    },
+    {
+      icon: Mail,
+      title: "Enterprise Email",
+      description: "Professional correspondence",
+      contact: "workingeld@gmail.com",
+      link: "mailto:workingeld@gmail.com",
+      bg: "from-orange-500/20 to-orange-600/20",
+      text: "text-orange-400",
+      badge: "Documentation",
+    },
+    {
+      icon: MapPin,
+      title: "National Coverage",
+      description: "Comprehensive service area",
+      contact: "All 50 U.S. States + Canada",
+      link: "#",
+      bg: "from-purple-500/20 to-purple-600/20",
+      text: "text-purple-400",
+      badge: "Full Coverage",
+    },
+  ] as const
+
   const faqs = [
     {
       question: "How quickly can you get our fleet up and running?",
@@ -227,41 +308,45 @@ ${formData.message}
 
   return (
     <div className="min-h-screen bg-[#0f1419] text-white overflow-x-hidden">
-      {/* Enhanced Header with Mega Menu */}
+      {/* Header */}
       <header
         className={`fixed w-full z-50 transition-all duration-700 ${
           scrolled
-            ? "py-2 bg-[#0f1419]/98 backdrop-blur-xl shadow-2xl border-b border-orange-400/20"
-            : "py-4 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419]"
+            ? "py-2 bg-[#0f1419]/98 backdrop-blur-xl shadow-xl border-b border-orange-400/20"
+            : "py-3 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419]"
         }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
-            {/* Enhanced Logo */}
-            <div className="flex items-center gap-4">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
               <div className="relative group">
-                <div className="absolute -inset-2 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full opacity-20 group-hover:opacity-40 transition-opacity blur-sm"></div>
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-orange-400 to-orange-600 rounded-full opacity-20 group-hover:opacity-35 transition-opacity blur-sm"></div>
                 <Image
                   src="/nextlog-logo.png"
                   alt="NextLog FullService Logo"
-                  width={scrolled ? 48 : 56}
-                  height={scrolled ? 48 : 56}
-                  className="relative rounded-full shadow-2xl transition-all duration-500 ring-2 ring-orange-400/40 group-hover:ring-orange-400/60"
+                  width={scrolled ? 44 : 52}
+                  height={scrolled ? 44 : 52}
+                  className="relative rounded-full shadow-xl transition-all duration-500 ring-2 ring-orange-400/40 group-hover:ring-orange-400/60"
                 />
-                <div className="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-[#0f1419] animate-pulse shadow-lg shadow-green-400/50"></div>
+                <div className="absolute -top-1 -right-1 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-[#0f1419] animate-pulse"></div>
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col leading-none">
                 <span
-                  className={`font-bold text-white transition-all duration-500 ${scrolled ? "text-xl" : "text-2xl"}`}
+                  className={`font-bold text-white tracking-tight transition-all duration-500 ${
+                    scrolled ? "text-lg" : "text-xl"
+                  }`}
                 >
                   NextLog
                 </span>
-                <span className="text-xs text-orange-400 font-bold tracking-[0.2em] uppercase">FullService Pro</span>
+                <span className="text-[10px] text-orange-400 font-bold tracking-[0.24em] uppercase">
+                  FullService Pro
+                </span>
               </div>
             </div>
 
-            {/* Enhanced Navigation */}
-            <nav className="hidden xl:flex items-center gap-8">
+            {/* Desktop Nav */}
+            <nav className="hidden xl:flex items-center gap-6">
               {[
                 { name: "Solutions", href: "#services" },
                 { name: "Pricing", href: "#pricing" },
@@ -272,36 +357,35 @@ ${formData.message}
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-gray-300 hover:text-orange-400 transition-all duration-300 font-medium relative group px-4 py-2"
+                  className="text-gray-300 hover:text-orange-400 transition-all duration-300 font-medium relative group px-3 py-1.5"
                 >
                   {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-500 group-hover:w-full"></span>
-                  <span className="absolute inset-0 bg-orange-400/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-orange-600 transition-all duration-500 group-hover:w-full"></span>
                 </a>
               ))}
             </nav>
 
-            {/* Enhanced CTA Buttons */}
-            <div className="hidden lg:flex items-center gap-3">
-              <div className="flex items-center gap-2 text-green-400 text-sm font-medium">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            {/* CTAs */}
+            <div className="hidden lg:flex items-center gap-2">
+              <div className="flex items-center gap-1.5 text-green-400 text-xs font-medium">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                 <span>Support Online</span>
               </div>
               <a
                 href="tg://resolve?domain=safetysupport2025"
-                className="group flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 text-sm shadow-xl hover:shadow-blue-500/30 transform hover:-translate-y-0.5 hover:scale-105"
+                className="group flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 text-xs shadow-lg hover:shadow-blue-500/30"
               >
-                <MessageCircle size={16} className="group-hover:rotate-12 transition-transform" />
-                <span>Chat Now</span>
+                <MessageCircle size={14} className="group-hover:rotate-12 transition-transform" />
+                <span>Chat</span>
               </a>
               <a
                 href="https://wa.me/996508228328"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-5 py-2.5 rounded-xl font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 text-sm shadow-xl hover:shadow-green-500/30 transform hover:-translate-y-0.5 hover:scale-105"
+                className="group flex items-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-2 rounded-lg font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 text-xs shadow-lg hover:shadow-green-500/30"
               >
-                <Phone size={16} className="group-hover:rotate-12 transition-transform" />
-                <span>Call Now</span>
+                <Phone size={14} className="group-hover:rotate-12 transition-transform" />
+                <span>WhatsApp</span>
               </a>
             </div>
 
@@ -309,16 +393,18 @@ ${formData.message}
             <button
               className="xl:hidden text-white p-2 hover:bg-orange-400/10 rounded-lg transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
 
-          {/* Enhanced Mobile Menu */}
+          {/* Mobile Menu */}
           {mobileMenuOpen && (
             <div className="xl:hidden absolute top-full left-0 w-full bg-[#0f1419]/98 backdrop-blur-xl border-b border-orange-400/20 shadow-2xl">
-              <nav className="container mx-auto px-4 py-8">
-                <div className="flex flex-col gap-6">
+              <nav className="container mx-auto px-4 py-6">
+                <div className="flex flex-col gap-4">
                   {[
                     { name: "Solutions", href: "#services" },
                     { name: "Pricing", href: "#pricing" },
@@ -329,23 +415,23 @@ ${formData.message}
                     <a
                       key={item.name}
                       href={item.href}
-                      className="text-gray-300 hover:text-orange-400 transition-colors font-semibold py-3 border-b border-gray-700 last:border-b-0"
+                      className="text-gray-300 hover:text-orange-400 transition-colors font-semibold py-2 border-b border-gray-700 last:border-b-0"
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {item.name}
                     </a>
                   ))}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-gray-700">
+                  <div className="flex gap-3 pt-4">
                     <a
                       href="tg://resolve?domain=safetysupport2025"
-                      className="flex items-center justify-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold text-sm flex-1"
+                      className="flex items-center justify-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold text-sm flex-1"
                     >
                       <MessageCircle size={16} />
                       Telegram
                     </a>
                     <a
                       href="https://wa.me/996508228328"
-                      className="flex items-center justify-center gap-2 bg-green-500 text-white px-6 py-3 rounded-xl font-semibold text-sm flex-1"
+                      className="flex items-center justify-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg font-semibold text-sm flex-1"
                     >
                       <Phone size={16} />
                       WhatsApp
@@ -358,80 +444,77 @@ ${formData.message}
         </div>
       </header>
 
-      {/* Revolutionary Hero Section */}
+      {/* Hero */}
       <section
         ref={heroRef}
-        className="relative pt-24 pb-32 px-4 bg-gradient-to-br from-[#0f1419] via-[#1a2332] to-[#0f1419] overflow-hidden"
+        className="relative pt-20 pb-20 px-4 bg-gradient-to-br from-[#0f1419] via-[#1a2332] to-[#0f1419] overflow-hidden"
       >
-        {/* Animated Background */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[length:60px_60px] animate-pulse"></div>
-          <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-orange-400/10 to-orange-600/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[length:60px_60px]"></div>
+          <div className="absolute top-16 left-10 w-64 h-64 bg-gradient-to-r from-orange-400/10 to-orange-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-16 right-10 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-purple-600/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto relative z-10">
-          <div className="flex flex-col xl:flex-row items-center gap-16">
-            <div className="xl:w-1/2 space-y-10">
+          <div className="flex flex-col xl:flex-row items-center gap-10">
+            <div className="xl:w-1/2 space-y-8">
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center gap-4">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/40 rounded-full px-4 py-2 text-orange-300 font-semibold text-sm backdrop-blur-sm">
-                  <Shield size={16} />
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/40 rounded-full px-3 py-1.5 text-orange-300 font-semibold text-xs backdrop-blur-sm">
+                  <Shield size={14} />
                   <span>FMCSA Certified</span>
                 </div>
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/40 rounded-full px-4 py-2 text-green-300 font-semibold text-sm backdrop-blur-sm">
-                  <Award size={16} />
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/40 rounded-full px-3 py-1.5 text-green-300 font-semibold text-xs backdrop-blur-sm">
+                  <Award size={14} />
                   <span>99.9% Uptime</span>
                 </div>
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-400/40 rounded-full px-4 py-2 text-blue-300 font-semibold text-sm backdrop-blur-sm">
-                  <Clock size={16} />
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-400/40 rounded-full px-3 py-1.5 text-blue-300 font-semibold text-xs backdrop-blur-sm">
+                  <Clock size={14} />
                   <span>24/7 Support</span>
                 </div>
               </div>
 
-              {/* Hero Headline */}
-              <div className="space-y-6">
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              {/* Headline */}
+              <div className="space-y-4">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                   <span className="text-white">We Offer The</span>{" "}
-                  <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent animate-pulse">
+                  <span className="bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 bg-clip-text text-transparent">
                     Best ELD Solutions
                   </span>{" "}
                   <span className="text-white">& Work On Your Behalf</span>
                 </h1>
 
-                <p className="text-xl md:text-2xl text-gray-300 leading-relaxed max-w-2xl">
+                <p className="text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl">
                   We partner with the industry's leading ELD providers to offer you the best solutions available. Our
                   expert team works on your behalf to ensure seamless implementation, maximum compliance, and ongoing
                   support. Trusted by 5,000+ carriers nationwide.
                 </p>
               </div>
 
-              {/* Enhanced CTAs */}
-              <div className="flex flex-col sm:flex-row gap-6">
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="#pricing"
-                  className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-5 rounded-2xl font-bold text-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-500 text-center shadow-2xl hover:shadow-orange-500/30 transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
+                  className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-base hover:from-orange-600 hover:to-orange-700 transition-all duration-300 text-center shadow-xl hover:shadow-orange-500/30"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-3">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
                     Start Free Trial
-                    <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
+                    <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </a>
                 <a
                   href="#demo"
-                  className="group relative border-2 border-orange-400 text-orange-400 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-400 hover:text-white transition-all duration-500 text-center transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
+                  className="group relative border-2 border-orange-400 text-orange-400 px-8 py-4 rounded-xl font-bold text-base hover:bg-orange-400 hover:text-white transition-all duration-300 text-center"
                 >
-                  <span className="relative z-10 flex items-center justify-center gap-3">
-                    <Play size={24} />
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <Play size={20} />
                     Watch Demo
                   </span>
-                  <div className="absolute inset-0 bg-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 </a>
               </div>
 
-              {/* Enhanced Trust Indicators */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-gray-700">
+              {/* Stats */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-gray-700">
                 {[
                   { icon: Users, number: "5,000+", label: "Active Carriers" },
                   { icon: Clock, number: "7+", label: "Years Experience" },
@@ -439,51 +522,49 @@ ${formData.message}
                   { icon: Globe, number: "10+", label: "Languages" },
                 ].map((stat, index) => (
                   <div key={index} className="text-center group">
-                    <div className="w-12 h-12 bg-gradient-to-r from-orange-400/20 to-orange-600/20 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
-                      <stat.icon size={24} className="text-orange-400" />
+                    <div className="w-10 h-10 bg-gradient-to-r from-orange-400/20 to-orange-600/20 rounded-lg flex items-center justify-center mx-auto mb-2">
+                      <stat.icon size={20} className="text-orange-400" />
                     </div>
-                    <div className="text-2xl font-bold text-orange-400 mb-1">{stat.number}</div>
-                    <div className="text-gray-400 text-sm font-medium">{stat.label}</div>
+                    <div className="text-xl font-bold text-orange-400 mb-0.5">{stat.number}</div>
+                    <div className="text-gray-400 text-xs font-medium">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Enhanced Hero Visual */}
+            {/* Visual */}
             <div className="xl:w-1/2 flex justify-center">
               <div className="relative">
-                {/* Floating Elements */}
-                <div className="absolute -top-8 -left-8 bg-gradient-to-r from-green-400 to-green-500 text-white px-4 py-2 rounded-xl font-semibold text-sm shadow-2xl animate-bounce">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle size={16} />
+                <div className="absolute -top-7 -left-7 bg-gradient-to-r from-green-400 to-green-500 text-white px-3 py-1.5 rounded-lg font-semibold text-xs shadow-xl">
+                  <div className="flex items-center gap-1.5">
+                    <CheckCircle size={14} />
                     <span>FMCSA Approved</span>
                   </div>
                 </div>
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-blue-400 to-blue-500 text-white px-4 py-2 rounded-xl font-semibold text-sm shadow-2xl animate-bounce delay-500">
-                  <div className="flex items-center gap-2">
-                    <Clock size={16} />
+                <div className="absolute -top-3 -right-3 bg-gradient-to-r from-blue-400 to-blue-500 text-white px-3 py-1.5 rounded-lg font-semibold text-xs shadow-xl">
+                  <div className="flex items-center gap-1.5">
+                    <Clock size={14} />
                     <span>1-5 Min Response</span>
                   </div>
                 </div>
-                <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-purple-400 to-purple-500 text-white px-4 py-2 rounded-xl font-semibold text-sm shadow-2xl animate-bounce delay-1000">
-                  <div className="flex items-center gap-2">
-                    <Globe size={16} />
+                <div className="absolute -bottom-3 -left-3 bg-gradient-to-r from-purple-400 to-purple-500 text-white px-3 py-1.5 rounded-lg font-semibold text-xs shadow-xl">
+                  <div className="flex items-center gap-1.5">
+                    <Globe size={14} />
                     <span>24/7 Support</span>
                   </div>
                 </div>
 
-                {/* Main Visual */}
-                <div className="relative bg-gradient-to-br from-[#1a2332] to-[#0f1419] p-12 rounded-3xl shadow-2xl border border-orange-400/30 backdrop-blur-sm">
-                  <div className="absolute inset-0 bg-gradient-to-r from-orange-400/10 to-orange-600/10 rounded-3xl blur-xl animate-pulse"></div>
+                <div className="relative bg-gradient-to-br from-[#1a2332] to-[#0f1419] p-8 rounded-2xl shadow-2xl border border-orange-400/30 backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange-400/10 to-orange-600/10 rounded-2xl blur-xl"></div>
                   <Image
                     src="/nextlog-logo.png"
                     alt="NextLog FullService Professional Logo"
-                    width={320}
-                    height={320}
-                    className="relative rounded-2xl shadow-2xl ring-4 ring-orange-400/30"
+                    width={260}
+                    height={260}
+                    className="relative rounded-xl shadow-2xl ring-4 ring-orange-400/30"
                   />
-                  <div className="absolute -top-6 -right-6 w-12 h-12 bg-green-400 rounded-full flex items-center justify-center text-white font-bold shadow-2xl animate-pulse">
-                    <CheckCircle size={24} />
+                  <div className="absolute -top-5 -right-5 w-10 h-10 bg-green-400 rounded-full flex items-center justify-center text-white font-bold shadow-xl">
+                    <CheckCircle size={20} />
                   </div>
                 </div>
               </div>
@@ -492,59 +573,48 @@ ${formData.message}
         </div>
       </section>
 
-      {/* Advanced Stats Dashboard */}
-      <section className="py-20 bg-gradient-to-r from-[#1a2332] to-[#0f1419] border-y border-orange-400/20">
+      {/* Stats Band */}
+      <section className="py-12 bg-gradient-to-r from-[#1a2332] to-[#0f1419] border-y border-orange-400/20">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-            {[
-              { number: "5,247", label: "Active Carriers", icon: Building2, color: "orange" },
-              { number: "99.97%", label: "System Uptime", icon: Shield, color: "green" },
-              { number: "47 sec", label: "Avg Response", icon: Clock, color: "blue" },
-              { number: "15", label: "Languages", icon: Globe, color: "purple" },
-              { number: "$2.3M", label: "Fines Prevented", icon: AlertCircle, color: "red" },
-              { number: "24/7", label: "Expert Support", icon: HeadphonesIcon, color: "cyan" },
-            ].map((stat, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {compactStats.map((s, index) => (
               <div key={index} className="group text-center">
                 <div
-                  className={`w-16 h-16 bg-gradient-to-r from-${stat.color}-400/20 to-${stat.color}-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl`}
+                  className={`w-14 h-14 bg-gradient-to-r ${s.bg} rounded-xl flex items-center justify-center mx-auto mb-2.5 shadow-lg`}
                 >
-                  <stat.icon size={28} className={`text-${stat.color}-400`} />
+                  <s.icon size={22} className={s.text} />
                 </div>
-                <div
-                  className={`text-3xl font-bold text-${stat.color}-400 mb-2 group-hover:scale-110 transition-transform`}
-                >
-                  {stat.number}
-                </div>
-                <div className="text-gray-300 font-medium text-sm">{stat.label}</div>
+                <div className={`text-2xl font-bold mb-1 ${s.text}`}>{s.number}</div>
+                <div className="text-gray-300 font-medium text-xs">{s.label}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Revolutionary Features Section */}
+      {/* About / Features */}
       <section
         id="about"
-        className="py-40 relative bg-cover bg-fixed bg-center"
+        className="py-24 relative bg-cover bg-fixed bg-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(15, 20, 25, 0.95), rgba(15, 20, 25, 0.95)), url('https://cdn.pixabay.com/photo/2016/11/29/06/15/automobile-1867045_1280.jpg')`,
+          backgroundImage: `linear-gradient(rgba(15, 20, 25, 0.94), rgba(15, 20, 25, 0.94)), url('https://cdn.pixabay.com/photo/2016/11/29/06/15/automobile-1867045_1280.jpg')`,
         }}
       >
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-5xl mx-auto text-center mb-24">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/40 rounded-full px-8 py-4 text-orange-300 font-bold mb-8 backdrop-blur-sm">
-              <Zap size={24} />
+          <div className="max-w-5xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/40 rounded-full px-6 py-2.5 text-orange-300 font-bold mb-6">
+              <Zap size={20} />
               <span>Revolutionary Technology</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-10">Why Choose Our ELD Partnership Services</h2>
-            <p className="text-2xl leading-relaxed text-gray-200 max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Why Choose Our ELD Partnership Services</h2>
+            <p className="text-xl leading-relaxed text-gray-200 max-w-4xl mx-auto">
               We don't manufacture ELDs - we partner with the best providers in the industry and work exclusively on
               your behalf. Our expertise ensures you get the right solution with professional implementation, maximum
               safety compliance, and enterprise-grade support.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 icon: Zap,
@@ -601,27 +671,23 @@ ${formData.message}
               },
             ].map((feature, index) => (
               <div key={index} className="group relative">
-                <div className="bg-gradient-to-br from-[#1a2332]/90 to-[#0f1419]/90 backdrop-blur-xl p-10 rounded-3xl border border-orange-400/30 hover:border-orange-400/60 transition-all duration-700 transform hover:-translate-y-4 hover:rotate-1 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
-                  {/* Highlight Badge */}
-                  <div className="absolute top-6 right-6 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg">
+                <div className="bg-gradient-to-br from-[#1a2332]/90 to-[#0f1419]/90 backdrop-blur-xl p-8 rounded-2xl border border-orange-400/30 hover:border-orange-400/60 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
+                  <div className="absolute top-5 right-5 bg-gradient-to-r from-orange-500 to-orange-600 text-white px-3 py-1.5 rounded-full text-[10px] font-bold shadow-lg">
                     {feature.highlight}
                   </div>
 
-                  {/* Icon */}
-                  <div className="w-20 h-20 bg-gradient-to-br from-orange-400/20 to-orange-600/20 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
-                    <feature.icon size={40} className="text-orange-400" />
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-400/20 to-orange-600/20 rounded-xl flex items-center justify-center mb-6">
+                    <feature.icon size={34} className="text-orange-400" />
                   </div>
 
-                  {/* Content */}
-                  <h3 className="text-2xl font-bold text-white mb-6 group-hover:text-orange-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">
                     {feature.title}
                   </h3>
-                  <p className="text-gray-300 leading-relaxed mb-8 text-lg">{feature.description}</p>
+                  <p className="text-gray-300 leading-relaxed mb-6">{feature.description}</p>
 
-                  {/* Features List */}
-                  <ul className="space-y-3">
+                  <ul className="space-y-2.5">
                     {feature.features.map((item, i) => (
-                      <li key={i} className="flex items-center gap-3 text-gray-300">
+                      <li key={i} className="flex items-center gap-2.5 text-gray-300">
                         <CheckCircle2 size={16} className="text-orange-400 flex-shrink-0" />
                         <span className="font-medium">{item}</span>
                       </li>
@@ -634,47 +700,48 @@ ${formData.message}
         </div>
       </section>
 
-      {/* Enhanced Interactive Testimonials */}
-      <section className="py-40 px-4 bg-gradient-to-b from-[#0f1419] to-[#1a2332]">
+      {/* Testimonials */}
+      <section className="py-24 px-4 bg-gradient-to-b from-[#0f1419] to-[#1a2332]">
         <div className="container mx-auto">
-          <div className="max-w-5xl mx-auto text-center mb-24">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-400/40 rounded-full px-8 py-4 text-yellow-300 font-bold mb-8 backdrop-blur-sm">
-              <Star size={24} />
+          <div className="max-w-4xl mx-auto text-center mb-14">
+            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-400/40 rounded-full px-6 py-2.5 text-yellow-300 font-bold mb-5">
+              <Star size={20} />
               <span>Industry Testimonials</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-10">Trusted by Industry Leaders</h2>
-            <p className="text-2xl text-gray-300 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Trusted by Industry Leaders</h2>
+            <p className="text-xl text-gray-300">
               See why thousands of carriers choose NextLog FullService for their mission-critical operations.
             </p>
           </div>
 
-          {/* Interactive Testimonial Carousel */}
-          <div className="relative max-w-6xl mx-auto">
-            <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] rounded-3xl p-12 border border-orange-400/30 shadow-2xl backdrop-blur-sm">
-              <div className="flex items-center justify-center gap-2 mb-8">
+          <div className="relative max-w-5xl mx-auto">
+            <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] rounded-2xl p-10 border border-orange-400/30 shadow-2xl backdrop-blur-sm">
+              <div className="flex items-center justify-center gap-1.5 mb-6">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={24} className="text-yellow-400 fill-current" />
+                  <Star key={i} size={20} className="text-yellow-400 fill-current" />
                 ))}
-                <span className="text-white font-bold text-xl ml-4">5.0 / 5.0</span>
+                <span className="text-white font-bold text-base ml-2">5.0 / 5.0</span>
               </div>
 
               <div className="text-center">
-                <blockquote className="text-2xl md:text-3xl text-gray-200 leading-relaxed italic mb-12 max-w-4xl mx-auto">
+                <blockquote className="text-xl md:text-2xl text-gray-200 leading-relaxed italic mb-8 max-w-3xl mx-auto">
                   "{testimonials[activeTestimonial].quote}"
                 </blockquote>
 
-                <div className="flex items-center justify-center gap-6">
+                <div className="flex items-center justify-center gap-5">
                   <Image
                     src={testimonials[activeTestimonial].image || "/placeholder.svg"}
                     alt={testimonials[activeTestimonial].author}
-                    width={80}
-                    height={80}
+                    width={72}
+                    height={72}
                     className="rounded-full ring-4 ring-orange-400/50"
                   />
                   <div className="text-left">
-                    <p className="text-white font-bold text-xl mb-1">{testimonials[activeTestimonial].author}</p>
-                    <p className="text-orange-400 font-semibold mb-1">{testimonials[activeTestimonial].title}</p>
-                    <p className="text-gray-400">
+                    <p className="text-white font-bold text-lg mb-0.5">{testimonials[activeTestimonial].author}</p>
+                    <p className="text-orange-400 font-semibold text-sm mb-0.5">
+                      {testimonials[activeTestimonial].title}
+                    </p>
+                    <p className="text-gray-400 text-sm">
                       {testimonials[activeTestimonial].company} • {testimonials[activeTestimonial].fleetSize}
                     </p>
                   </div>
@@ -682,14 +749,15 @@ ${formData.message}
               </div>
             </div>
 
-            {/* Testimonial Navigation */}
-            <div className="flex justify-center gap-3 mt-8">
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveTestimonial(index)}
-                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                    index === activeTestimonial ? "bg-orange-400 w-12" : "bg-gray-600 hover:bg-gray-500"
+                  aria-label={`Go to testimonial ${index + 1}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === activeTestimonial ? "bg-orange-400 w-10" : "bg-gray-600 w-3 hover:bg-gray-500"
                   }`}
                 />
               ))}
@@ -698,23 +766,23 @@ ${formData.message}
         </div>
       </section>
 
-      {/* Advanced Services Showcase */}
-      <section id="services" className="py-40 px-4 bg-gradient-to-b from-[#1a2332] to-[#0f1419]">
+      {/* Services */}
+      <section id="services" className="py-24 px-4 bg-gradient-to-b from-[#1a2332] to-[#0f1419]">
         <div className="container mx-auto">
-          <div className="max-w-5xl mx-auto text-center mb-24">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-400/40 rounded-full px-8 py-4 text-blue-300 font-bold mb-8 backdrop-blur-sm">
-              <Settings size={24} />
+          <div className="max-w-5xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-400/40 rounded-full px-6 py-2.5 text-blue-300 font-bold mb-5">
+              <Settings size={20} />
               <span>Comprehensive Solutions</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-10">Our Partnership Services</h2>
-            <p className="text-2xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">Our Partnership Services</h2>
+            <p className="text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
               From selecting the best ELD solution to complete implementation and ongoing support, we handle everything
               on your behalf. Our partnerships with top providers ensure you get the best technology with professional
               service and guaranteed results.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
+          <div className="grid lg:grid-cols-2 gap-8">
             {[
               {
                 title: "Lightning-Fast ELD Deployment",
@@ -726,7 +794,7 @@ ${formData.message}
                   "Driver Certification",
                   "24/7 Launch Support",
                 ],
-                price: "Starting at $50",
+                price: "Starting at $80",
                 icon: Zap,
                 gradient: "from-orange-500 to-red-500",
               },
@@ -777,45 +845,41 @@ ${formData.message}
               },
             ].map((service, index) => (
               <div key={index} className="group relative">
-                <div className="bg-gradient-to-br from-[#1a2332]/80 to-[#0f1419]/80 backdrop-blur-xl border border-orange-400/30 rounded-3xl overflow-hidden hover:border-orange-400/60 transition-all duration-700 transform hover:-translate-y-4 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
-                  <div className="p-10">
-                    {/* Header with Icon and Price */}
-                    <div className="flex items-start justify-between mb-8">
+                <div className="bg-gradient-to-br from-[#1a2332]/80 to-[#0f1419]/80 backdrop-blur-xl border border-orange-400/30 rounded-2xl overflow-hidden hover:border-orange-400/60 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
+                  <div className="p-8">
+                    <div className="flex items-start justify-between mb-6">
                       <div
-                        className={`w-16 h-16 bg-gradient-to-r ${service.gradient} bg-opacity-20 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
+                        className={`w-14 h-14 bg-gradient-to-r ${service.gradient} bg-opacity-20 rounded-xl flex items-center justify-center`}
                       >
-                        <service.icon size={32} className="text-white" />
+                        <service.icon size={28} className="text-white" />
                       </div>
-                      <span className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/40 text-orange-300 px-4 py-2 rounded-full text-sm font-bold backdrop-blur-sm">
+                      <span className="bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-400/40 text-orange-300 px-3 py-1.5 rounded-full text-xs font-bold">
                         {service.price}
                       </span>
                     </div>
 
-                    {/* Content */}
-                    <h3 className="text-3xl font-bold text-white mb-6 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-orange-400 transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-gray-300 mb-8 leading-relaxed text-lg">{service.description}</p>
+                    <p className="text-gray-300 mb-6 leading-relaxed">{service.description}</p>
 
-                    {/* Features */}
-                    <ul className="space-y-4 mb-10">
+                    <ul className="space-y-3 mb-6">
                       {service.features.map((feature, i) => (
-                        <li key={i} className="flex items-center gap-4 text-gray-300">
-                          <CheckCircle2 size={20} className="text-orange-400 flex-shrink-0" />
-                          <span className="font-medium text-lg">{feature}</span>
+                        <li key={i} className="flex items-center gap-3 text-gray-300">
+                          <CheckCircle2 size={18} className="text-orange-400 flex-shrink-0" />
+                          <span className="font-medium">{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  {/* CTA Button */}
-                  <div className="px-10 pb-10">
+                  <div className="px-8 pb-8">
                     <a
                       href="#contact"
-                      className="group/btn flex items-center justify-center gap-3 w-full bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-400/30 text-orange-400 py-4 rounded-2xl font-bold text-lg hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-500 hover:shadow-xl hover:shadow-orange-500/25"
+                      className="group/btn flex items-center justify-center gap-2 w-full bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-400/30 text-orange-400 py-3.5 rounded-xl font-bold text-base hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/25"
                     >
                       Get Started
-                      <ChevronRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
+                      <ChevronRight size={18} className="group-hover/btn:translate-x-0.5 transition-transform" />
                     </a>
                   </div>
                 </div>
@@ -825,42 +889,43 @@ ${formData.message}
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section id="resources" className="py-40 px-4 bg-gradient-to-b from-[#0f1419] to-[#1a2332]">
+      {/* FAQ */}
+      <section id="resources" className="py-24 px-4 bg-gradient-to-b from-[#0f1419] to-[#1a2332]">
         <div className="container mx-auto max-w-4xl">
-          <div className="text-center mb-24">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/40 rounded-full px-8 py-4 text-green-300 font-bold mb-8 backdrop-blur-sm">
-              <AlertCircle size={24} />
+          <div className="text-center mb-14">
+            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/40 rounded-full px-6 py-2.5 text-green-300 font-bold mb-5">
+              <AlertCircle size={20} />
               <span>Frequently Asked Questions</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-10">Everything You Need to Know</h2>
-            <p className="text-2xl text-gray-300">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Everything You Need to Know</h2>
+            <p className="text-xl text-gray-300">
               Get instant answers to common questions about our professional ELD solutions.
             </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-5">
             {faqs.map((faq, index) => (
               <div key={index} className="group">
-                <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl overflow-hidden hover:border-orange-400/60 transition-all duration-500">
+                <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-xl overflow-hidden hover:border-orange-400/60 transition-all duration-300">
                   <button
-                    className="w-full p-8 text-left flex items-center justify-between hover:bg-orange-400/5 transition-colors"
+                    className="w-full p-6 text-left flex items-center justify-between hover:bg-orange-400/5 transition-colors"
                     onClick={() => setActiveFAQ(activeFAQ === index ? null : index)}
+                    aria-expanded={activeFAQ === index}
                   >
-                    <h3 className="text-xl font-bold text-white group-hover:text-orange-400 transition-colors pr-4">
+                    <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-orange-400 transition-colors pr-4">
                       {faq.question}
                     </h3>
                     <div className="flex-shrink-0">
                       {activeFAQ === index ? (
-                        <Minus size={24} className="text-orange-400" />
+                        <Minus size={22} className="text-orange-400" />
                       ) : (
-                        <Plus size={24} className="text-gray-400 group-hover:text-orange-400 transition-colors" />
+                        <Plus size={22} className="text-gray-400 group-hover:text-orange-400 transition-colors" />
                       )}
                     </div>
                   </button>
                   {activeFAQ === index && (
-                    <div className="px-8 pb-8">
-                      <p className="text-gray-300 leading-relaxed text-lg">{faq.answer}</p>
+                    <div className="px-6 pb-6">
+                      <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
                     </div>
                   )}
                 </div>
@@ -870,35 +935,35 @@ ${formData.message}
         </div>
       </section>
 
-      {/* Revolutionary Pricing Section */}
-      <section id="pricing" className="py-40 px-4 bg-gradient-to-b from-[#1a2332] to-[#0f1419]">
+      {/* Pricing */}
+      <section id="pricing" className="py-24 px-4 bg-gradient-to-b from-[#1a2332] to-[#0f1419]">
         <div className="container mx-auto">
-          <div className="max-w-5xl mx-auto text-center mb-24">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/40 rounded-full px-8 py-4 text-green-300 font-bold mb-8 backdrop-blur-sm">
-              <CheckCircle size={24} />
+          <div className="max-w-5xl mx-auto text-center mb-16">
+            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-400/40 rounded-full px-6 py-2.5 text-green-300 font-bold mb-5">
+              <CheckCircle size={20} />
               <span>Transparent Pricing</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-10">Choose Your Success Plan</h2>
-            <p className="text-2xl text-gray-300 max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-5">Choose Your Success Plan</h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
               Professional-grade solutions designed to scale with your business. No hidden fees, no long-term contracts,
               30-day money-back guarantee.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-            {/* Starter Plan */}
+          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* ELD Activation */}
             <div className="group relative">
-              <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-3xl overflow-hidden transition-all duration-700 hover:-translate-y-4 hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
-                <div className="p-10">
-                  <div className="text-center mb-10">
-                    <h3 className="text-3xl font-bold text-white mb-4">ELD Activation</h3>
-                    <p className="text-gray-400 mb-8">Perfect for getting started quickly</p>
-                    <div className="flex items-end justify-center gap-2 mb-8">
-                      <span className="text-6xl font-bold text-orange-400">$50</span>
-                      <span className="text-gray-400 mb-3 text-xl">one-time</span>
+              <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
+                <div className="p-8">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-white mb-2">ELD Activation</h3>
+                    <p className="text-gray-400 mb-6">Perfect for getting started quickly</p>
+                    <div className="flex items-end justify-center gap-1.5 mb-6">
+                      <span className="text-5xl font-bold text-orange-400">$80</span>
+                      <span className="text-gray-400 mb-2 text-lg">one-time</span>
                     </div>
                   </div>
-                  <ul className="space-y-5 mb-12">
+                  <ul className="space-y-3.5 mb-8">
                     {[
                       "Professional device configuration",
                       "Complete driver account setup",
@@ -907,17 +972,17 @@ ${formData.message}
                       "Priority technical support",
                       "30-day success guarantee",
                     ].map((feature, i) => (
-                      <li key={i} className="flex items-start gap-4 text-gray-300">
-                        <CheckCircle size={20} className="text-orange-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-lg">{feature}</span>
+                      <li key={i} className="flex items-start gap-3 text-gray-300">
+                        <CheckCircle size={18} className="text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="px-10 pb-10">
+                <div className="px-8 pb-8">
                   <a
                     href="tg://resolve?domain=safetysupport2025"
-                    className="block w-full bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-400/30 text-orange-400 font-bold py-5 text-center rounded-2xl hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-500 text-lg"
+                    className="block w-full bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-400/30 text-orange-400 font-bold py-4 text-center rounded-xl hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-300"
                   >
                     Get Started Now
                   </a>
@@ -925,22 +990,22 @@ ${formData.message}
               </div>
             </div>
 
-            {/* Professional Plan */}
+            {/* Full Support Pro */}
             <div className="group relative">
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-3 px-8 rounded-full text-sm shadow-2xl z-10">
+              <div className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-2.5 px-6 rounded-full text-xs shadow-2xl z-10">
                 Most Popular Choice
               </div>
-              <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border-2 border-orange-400 rounded-3xl overflow-hidden transition-all duration-700 hover:-translate-y-4 hover:shadow-2xl hover:shadow-orange-400/30 h-full transform scale-105">
-                <div className="p-10">
-                  <div className="text-center mb-10">
-                    <h3 className="text-3xl font-bold text-orange-400 mb-4">Full Support Pro</h3>
-                    <p className="text-gray-400 mb-8">Complete solution for serious carriers</p>
-                    <div className="flex items-end justify-center gap-2 mb-8">
-                      <span className="text-6xl font-bold text-orange-400">$120</span>
-                      <span className="text-gray-400 mb-3 text-xl">/month</span>
+              <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border-2 border-orange-400 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-400/30 h-full transform scale-[1.03]">
+                <div className="p-8">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-orange-400 mb-2">Full Support Pro</h3>
+                    <p className="text-gray-400 mb-6">Complete solution for serious carriers</p>
+                    <div className="flex items-end justify-center gap-1.5 mb-6">
+                      <span className="text-5xl font-bold text-orange-400">$180</span>
+                      <span className="text-gray-400 mb-2 text-lg">/month</span>
                     </div>
                   </div>
-                  <ul className="space-y-5 mb-12">
+                  <ul className="space-y-3.5 mb-8">
                     {[
                       "Everything in ELD Activation",
                       "24/7 multilingual support (47-sec response)",
@@ -951,17 +1016,17 @@ ${formData.message}
                       "Priority feature updates",
                       "Dedicated success manager",
                     ].map((feature, i) => (
-                      <li key={i} className="flex items-start gap-4 text-gray-300">
-                        <CheckCircle size={20} className="text-orange-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-lg">{feature}</span>
+                      <li key={i} className="flex items-start gap-3 text-gray-300">
+                        <CheckCircle size={18} className="text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="px-10 pb-10">
+                <div className="px-8 pb-8">
                   <a
                     href="tg://resolve?domain=safetysupport2025"
-                    className="block w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-5 text-center rounded-2xl hover:from-orange-600 hover:to-orange-700 transition-all duration-500 shadow-2xl hover:shadow-orange-500/30 text-lg"
+                    className="block w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 text-center rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-xl hover:shadow-orange-500/30"
                   >
                     Start Free Trial
                   </a>
@@ -969,18 +1034,18 @@ ${formData.message}
               </div>
             </div>
 
-            {/* Enterprise Plan */}
+            {/* Enterprise */}
             <div className="group relative">
-              <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-3xl overflow-hidden transition-all duration-700 hover:-translate-y-4 hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
-                <div className="p-10">
-                  <div className="text-center mb-10">
-                    <h3 className="text-3xl font-bold text-white mb-4">Enterprise Fleet</h3>
-                    <p className="text-gray-400 mb-8">Custom solutions for large operations</p>
-                    <div className="flex items-end justify-center gap-2 mb-8">
-                      <span className="text-6xl font-bold text-orange-400">Custom</span>
+              <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-orange-400 hover:shadow-2xl hover:shadow-orange-400/20 h-full">
+                <div className="p-8">
+                  <div className="text-center mb-6">
+                    <h3 className="text-2xl font-bold text-white mb-2">Enterprise Fleet</h3>
+                    <p className="text-gray-400 mb-6">Custom solutions for large operations</p>
+                    <div className="flex items-end justify-center gap-1.5 mb-6">
+                      <span className="text-5xl font-bold text-orange-400">Custom</span>
                     </div>
                   </div>
-                  <ul className="space-y-5 mb-12">
+                  <ul className="space-y-3.5 mb-8">
                     {[
                       "Everything in Full Support Pro",
                       "Volume discounts (5+ trucks)",
@@ -991,17 +1056,17 @@ ${formData.message}
                       "On-site training & implementation",
                       "SLA guarantees & priority support",
                     ].map((feature, i) => (
-                      <li key={i} className="flex items-start gap-4 text-gray-300">
-                        <CheckCircle size={20} className="text-orange-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-lg">{feature}</span>
+                      <li key={i} className="flex items-start gap-3 text-gray-300">
+                        <CheckCircle size={18} className="text-orange-400 mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="px-10 pb-10">
+                <div className="px-8 pb-8">
                   <a
                     href="#contact"
-                    className="block w-full bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-400/30 text-orange-400 font-bold py-5 text-center rounded-2xl hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-500 text-lg"
+                    className="block w-full bg-gradient-to-r from-orange-500/10 to-orange-600/10 border border-orange-400/30 text-orange-400 font-bold py-4 text-center rounded-xl hover:from-orange-500 hover:to-orange-600 hover:text-white transition-all duration-300"
                   >
                     Contact Sales
                   </a>
@@ -1010,32 +1075,32 @@ ${formData.message}
             </div>
           </div>
 
-          {/* Enhanced Guarantee Section */}
-          <div className="max-w-5xl mx-auto mt-20">
-            <div className="bg-gradient-to-r from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-3xl p-12 text-center backdrop-blur-sm">
-              <div className="flex items-center justify-center gap-4 mb-8">
-                <Shield size={32} className="text-orange-400" />
-                <h3 className="text-3xl font-bold text-white">30-Day Success Guarantee</h3>
+          {/* Guarantee */}
+          <div className="max-w-5xl mx-auto mt-14">
+            <div className="bg-gradient-to-r from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl p-10 text-center backdrop-blur-sm">
+              <div className="flex items-center justify-center gap-3 mb-5">
+                <Shield size={26} className="text-orange-400" />
+                <h3 className="text-2xl font-bold text-white">30-Day Success Guarantee</h3>
               </div>
-              <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-8">
+              <p className="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto mb-6">
                 Try NextLog FullService completely risk-free. If you're not absolutely satisfied within 30 days, we'll
                 refund every penny - no questions asked, no hidden conditions.
               </p>
-              <div className="flex flex-wrap justify-center items-center gap-8 text-gray-400">
+              <div className="flex flex-wrap justify-center items-center gap-6 text-gray-400">
                 <div className="flex items-center gap-2">
-                  <CheckCircle size={20} className="text-green-400" />
+                  <CheckCircle size={18} className="text-green-400" />
                   <span>No Setup Fees</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle size={20} className="text-green-400" />
+                  <CheckCircle size={18} className="text-green-400" />
                   <span>No Long-term Contracts</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle size={20} className="text-green-400" />
+                  <CheckCircle size={18} className="text-green-400" />
                   <span>Cancel Anytime</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle size={20} className="text-green-400" />
+                  <CheckCircle size={18} className="text-green-400" />
                   <span>100% Money Back</span>
                 </div>
               </div>
@@ -1044,68 +1109,65 @@ ${formData.message}
         </div>
       </section>
 
-      {/* Revolutionary CTA Section */}
-      <section className="py-32 px-4 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419] relative overflow-hidden">
+      {/* CTA */}
+      <section className="py-20 px-4 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419] relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[length:60px_60px] animate-pulse"></div>
-          <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-r from-orange-400/10 to-orange-600/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-gradient-to-r from-blue-400/10 to-purple-600/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(249,115,22,0.03)_1px,transparent_1px)] bg-[length:60px_60px]"></div>
+          <div className="absolute top-8 left-10 w-72 h-72 bg-gradient-to-r from-orange-400/10 to-orange-600/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-8 right-10 w-72 h-72 bg-gradient-to-r from-blue-400/10 to-purple-600/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto text-center">
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Partner With The{" "}
               <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
                 Best ELD Experts?
               </span>
             </h2>
-            <p className="text-2xl text-gray-300 mb-16 leading-relaxed max-w-4xl mx-auto">
+            <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-4xl mx-auto">
               Join thousands of carriers who trust us to select, implement, and manage the best ELD solutions on their
               behalf. Get started today with our expert consultation and professional service that works exclusively for
               your success.
             </p>
-            <div className="flex flex-col lg:flex-row gap-8 justify-center items-center">
+            <div className="flex flex-col lg:flex-row gap-5 justify-center items-center">
               <a
                 href="tg://resolve?domain=safetysupport2025"
-                className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white px-12 py-6 rounded-2xl font-bold text-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-500 shadow-2xl hover:shadow-orange-500/30 transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
+                className="group relative bg-gradient-to-r from-orange-500 to-orange-600 text-white px-10 py-5 rounded-xl font-bold text-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-xl hover:shadow-orange-500/30"
               >
-                <span className="relative z-10 flex items-center justify-center gap-4">
+                <span className="relative z-10 flex items-center justify-center gap-3">
                   Start Your Free Consultation
-                  <ArrowRight size={28} className="group-hover:translate-x-2 transition-transform" />
+                  <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </a>
               <a
                 href="https://wa.me/996508228328"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative border-2 border-orange-400 text-orange-400 px-12 py-6 rounded-2xl font-bold text-xl hover:bg-orange-400 hover:text-white transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
+                className="group relative border-2 border-orange-400 text-orange-400 px-10 py-5 rounded-xl font-bold text-lg hover:bg-orange-400 hover:text-white transition-all duration-300"
               >
-                <span className="relative z-10 flex items-center justify-center gap-4">
-                  <Phone size={28} />
+                <span className="relative z-10 flex items-center justify-center gap-3">
+                  <Phone size={22} />
                   Get Instant Support
                 </span>
-                <div className="absolute inset-0 bg-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </a>
             </div>
 
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center items-center gap-12 mt-16 pt-16 border-t border-gray-700">
-              <div className="flex items-center gap-3 text-gray-400">
-                <Shield size={24} className="text-green-400" />
+            <div className="flex flex-wrap justify-center items-center gap-10 mt-10 pt-10 border-t border-gray-700">
+              <div className="flex items-center gap-2.5 text-gray-400">
+                <Shield size={20} className="text-green-400" />
                 <span className="font-semibold">SOC 2 Certified</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <Award size={24} className="text-orange-400" />
+              <div className="flex items-center gap-2.5 text-gray-400">
+                <Award size={20} className="text-orange-400" />
                 <span className="font-semibold">FMCSA Approved</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <Clock size={24} className="text-blue-400" />
+              <div className="flex items-center gap-2.5 text-gray-400">
+                <Clock size={20} className="text-blue-400" />
                 <span className="font-semibold">24/7 Expert Support</span>
               </div>
-              <div className="flex items-center gap-3 text-gray-400">
-                <Users size={24} className="text-purple-400" />
+              <div className="flex items-center gap-2.5 text-gray-400">
+                <Users size={20} className="text-purple-400" />
                 <span className="font-semibold">5,000+ Satisfied Carriers</span>
               </div>
             </div>
@@ -1113,80 +1175,43 @@ ${formData.message}
         </div>
       </section>
 
-      {/* Ultimate Contact Section */}
-      <section id="contact" className="py-40 px-4 bg-gradient-to-b from-[#1a2332] to-[#0f1419]">
+      {/* Contact */}
+      <section id="contact" className="py-24 px-4 bg-gradient-to-b from-[#1a2332] to-[#0f1419]">
         <div className="container mx-auto">
-          <div className="max-w-5xl mx-auto text-center mb-24">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-400/40 rounded-full px-8 py-4 text-purple-300 font-bold mb-8 backdrop-blur-sm">
-              <MessageCircle size={24} />
+          <div className="max-w-5xl mx-auto text-center mb-14">
+            <div className="inline-flex items-center gap-2.5 bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-400/40 rounded-full px-6 py-2.5 text-purple-300 font-bold mb-5">
+              <MessageCircle size={20} />
               <span>Expert Support Team</span>
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold text-white mb-10">Connect With Our Specialists</h2>
-            <p className="text-2xl text-gray-300 max-w-4xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Connect With Our Specialists</h2>
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
               Ready to revolutionize your fleet operations? Our certified experts are standing by 24/7 to provide
               personalized consultation and immediate assistance.
             </p>
           </div>
 
-          <div className="grid xl:grid-cols-2 gap-20 max-w-7xl mx-auto">
-            {/* Enhanced Contact Information */}
-            <div className="space-y-10">
-              <div className="grid sm:grid-cols-2 gap-8">
-                {[
-                  {
-                    icon: MessageCircle,
-                    title: "Telegram Support",
-                    description: "Instant messaging with our experts",
-                    contact: "@safetysupport2025",
-                    link: "tg://resolve?domain=safetysupport2025",
-                    color: "blue",
-                    badge: "Fastest Response",
-                  },
-                  {
-                    icon: Phone,
-                    title: "WhatsApp Professional",
-                    description: "Voice & video calls available",
-                    contact: "+996 508 228 328",
-                    link: "https://wa.me/996508228328",
-                    color: "green",
-                    badge: "Voice Support",
-                  },
-                  {
-                    icon: Mail,
-                    title: "Enterprise Email",
-                    description: "Professional correspondence",
-                    contact: "workingeld@gmail.com",
-                    link: "mailto:workingeld@gmail.com",
-                    color: "orange",
-                    badge: "Documentation",
-                  },
-                  {
-                    icon: MapPin,
-                    title: "National Coverage",
-                    description: "Comprehensive service area",
-                    contact: "All 50 U.S. States + Canada",
-                    link: "#",
-                    color: "purple",
-                    badge: "Full Coverage",
-                  },
-                ].map((item, index) => (
+          <div className="grid xl:grid-cols-2 gap-12 max-w-7xl mx-auto">
+            {/* Contact Info */}
+            <div className="space-y-8">
+              <div className="grid sm:grid-cols-2 gap-6">
+                {contactTiles.map((item, index) => (
                   <div key={index} className="group relative">
-                    <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-3xl p-8 hover:border-orange-400/60 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-orange-400/10 h-full">
-                      <div className="absolute top-4 right-4 bg-gradient-to-r from-orange-500/20 to-orange-600/20 text-orange-300 px-3 py-1 rounded-full text-xs font-bold">
+                    <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl p-6 hover:border-orange-400/60 transition-all duration-300 transform hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-orange-400/10 h-full">
+                      <div className="absolute top-3 right-3 bg-gradient-to-r from-orange-500/20 to-orange-600/20 text-orange-300 px-2.5 py-1 rounded-full text-[10px] font-bold">
                         {item.badge}
                       </div>
                       <div
-                        className={`w-16 h-16 bg-gradient-to-r from-${item.color}-500/20 to-${item.color}-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
+                        className={`w-14 h-14 bg-gradient-to-r ${item.bg} rounded-xl flex items-center justify-center mb-4`}
                       >
-                        <item.icon size={32} className={`text-${item.color}-400`} />
+                        <item.icon size={26} className={item.text} />
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-3">{item.title}</h3>
-                      <p className="text-gray-400 mb-4 text-lg">{item.description}</p>
+                      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                      <p className="text-gray-400 mb-3">{item.description}</p>
                       <a
                         href={item.link}
                         target={item.link.startsWith("http") ? "_blank" : undefined}
                         rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="text-orange-400 hover:text-orange-300 font-bold transition-colors text-lg break-all"
+                        className="text-orange-400 hover:text-orange-300 font-bold transition-colors break-all"
                       >
                         {item.contact}
                       </a>
@@ -1195,52 +1220,52 @@ ${formData.message}
                 ))}
               </div>
 
-              {/* Enhanced Business Information */}
-              <div className="grid sm:grid-cols-2 gap-8">
-                <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-3xl p-8 hover:border-orange-400/60 transition-all duration-500">
-                  <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <Clock size={28} className="text-orange-400" />
+              {/* Business Info */}
+              <div className="grid sm:grid-cols-2 gap-6">
+                <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl p-6 hover:border-orange-400/60 transition-all duration-300">
+                  <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2.5">
+                    <Clock size={22} className="text-orange-400" />
                     Support Hours
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-300 text-lg">Emergency Support:</span>
+                      <span className="text-gray-300">Emergency Support:</span>
                       <span className="text-green-400 font-bold">24/7/365</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-300 text-lg">Average Response:</span>
+                      <span className="text-gray-300">Average Response:</span>
                       <span className="text-orange-400 font-bold">47 Seconds</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-300 text-lg">Languages Supported:</span>
+                      <span className="text-gray-300">Languages Supported:</span>
                       <span className="text-blue-400 font-bold">15+</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-300 text-lg">Success Rate:</span>
+                      <span className="text-gray-300">Success Rate:</span>
                       <span className="text-purple-400 font-bold">99.97%</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-3xl p-8 hover:border-orange-400/60 transition-all duration-500">
-                  <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                    <Award size={28} className="text-orange-400" />
+                <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl p-6 hover:border-orange-400/60 transition-all duration-300">
+                  <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2.5">
+                    <Award size={22} className="text-orange-400" />
                     Certifications
                   </h3>
-                  <ul className="space-y-4">
-                    <li className="flex items-center gap-3">
+                  <ul className="space-y-3">
+                    <li className="flex items-center gap-2.5">
                       <CheckCircle size={16} className="text-green-400" />
                       <span className="text-gray-300">FMCSA Registered Provider</span>
                     </li>
-                    <li className="flex items-center gap-3">
+                    <li className="flex items-center gap-2.5">
                       <CheckCircle size={16} className="text-green-400" />
                       <span className="text-gray-300">SOC 2 Type II Certified</span>
                     </li>
-                    <li className="flex items-center gap-3">
+                    <li className="flex items-center gap-2.5">
                       <CheckCircle size={16} className="text-green-400" />
                       <span className="text-gray-300">ISO 27001 Compliant</span>
                     </li>
-                    <li className="flex items-center gap-3">
+                    <li className="flex items-center gap-2.5">
                       <CheckCircle size={16} className="text-green-400" />
                       <span className="text-gray-300">DOT Audit Certified</span>
                     </li>
@@ -1249,16 +1274,16 @@ ${formData.message}
               </div>
             </div>
 
-            {/* Enhanced Contact Form */}
-            <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-3xl p-12 hover:border-orange-400/60 transition-all duration-500">
-              <h3 className="text-3xl font-bold text-white mb-8 flex items-center gap-3">
-                <Send size={28} className="text-orange-400" />
+            {/* Contact Form */}
+            <div className="bg-gradient-to-br from-[#1a2332] to-[#0f1419] border border-orange-400/30 rounded-2xl p-10 hover:border-orange-400/60 transition-all duration-300">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2.5">
+                <Send size={22} className="text-orange-400" />
                 Get Your Free Consultation
               </h3>
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid sm:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-bold text-gray-300 mb-3">
+                    <label htmlFor="name" className="block text-xs font-bold text-gray-300 mb-2">
                       Full Name *
                     </label>
                     <input
@@ -1268,12 +1293,12 @@ ${formData.message}
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-6 py-4 bg-[#0f1419] border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 text-lg"
+                      className="w-full px-5 py-3.5 bg-[#0f1419] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all"
                       placeholder="Your full name"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-bold text-gray-300 mb-3">
+                    <label htmlFor="email" className="block text-xs font-bold text-gray-300 mb-2">
                       Email Address *
                     </label>
                     <input
@@ -1283,14 +1308,14 @@ ${formData.message}
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-6 py-4 bg-[#0f1419] border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 text-lg"
+                      className="w-full px-5 py-3.5 bg-[#0f1419] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all"
                       placeholder="your@company.com"
                     />
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-6">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-bold text-gray-300 mb-3">
+                    <label htmlFor="phone" className="block text-xs font-bold text-gray-300 mb-2">
                       Phone Number
                     </label>
                     <input
@@ -1299,12 +1324,12 @@ ${formData.message}
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-6 py-4 bg-[#0f1419] border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 text-lg"
+                      className="w-full px-5 py-3.5 bg-[#0f1419] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all"
                       placeholder="(555) 123-4567"
                     />
                   </div>
                   <div>
-                    <label htmlFor="fleetSize" className="block text-sm font-bold text-gray-300 mb-3">
+                    <label htmlFor="fleetSize" className="block text-xs font-bold text-gray-300 mb-2">
                       Fleet Size
                     </label>
                     <select
@@ -1312,7 +1337,7 @@ ${formData.message}
                       name="fleetSize"
                       value={formData.fleetSize}
                       onChange={handleInputChange}
-                      className="w-full px-6 py-4 bg-[#0f1419] border border-gray-600 rounded-xl text-white focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 text-lg"
+                      className="w-full px-5 py-3.5 bg-[#0f1419] border border-gray-600 rounded-lg text-white focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all"
                     >
                       <option value="">Select fleet size</option>
                       <option value="1-5">1-5 Trucks</option>
@@ -1323,7 +1348,7 @@ ${formData.message}
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="company" className="block text-sm font-bold text-gray-300 mb-3">
+                  <label htmlFor="company" className="block text-xs font-bold text-gray-300 mb-2">
                     Company Name
                   </label>
                   <input
@@ -1332,12 +1357,12 @@ ${formData.message}
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-6 py-4 bg-[#0f1419] border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 text-lg"
+                    className="w-full px-5 py-3.5 bg-[#0f1419] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all"
                     placeholder="Your company name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-bold text-gray-300 mb-3">
+                  <label htmlFor="message" className="block text-xs font-bold text-gray-300 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -1347,41 +1372,41 @@ ${formData.message}
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-6 py-4 bg-[#0f1419] border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all duration-300 resize-none text-lg"
+                    className="w-full px-5 py-3.5 bg-[#0f1419] border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-orange-400 focus:ring-2 focus:ring-orange-400/20 transition-all resize-none"
                     placeholder="Tell us about your fleet needs, current challenges, or specific questions..."
                   />
                 </div>
                 <button
                   type="submit"
                   disabled={formStatus === "loading"}
-                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-5 rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-500 flex items-center justify-center gap-3 shadow-2xl hover:shadow-orange-500/30 transform hover:-translate-y-1 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold py-4 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-300 flex items-center justify-center gap-3 shadow-xl hover:shadow-orange-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {formStatus === "loading" ? (
                     <>
-                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                       <span>Opening WhatsApp & Telegram...</span>
                     </>
                   ) : formStatus === "success" ? (
                     <>
-                      <CheckCircle size={24} />
+                      <CheckCircle size={20} />
                       <span>Message Sent Successfully!</span>
                     </>
                   ) : formStatus === "error" ? (
                     <>
-                      <AlertCircle size={24} />
+                      <AlertCircle size={20} />
                       <span>Please try again</span>
                     </>
                   ) : (
                     <>
-                      <Send size={24} />
+                      <Send size={20} />
                       <span>Send Message & Get Free Consultation</span>
                     </>
                   )}
                 </button>
               </form>
 
-              <div className="mt-8 p-6 bg-orange-500/10 border border-orange-400/30 rounded-2xl">
-                <p className="text-gray-300 text-center">
+              <div className="mt-6 p-5 bg-orange-500/10 border border-orange-400/30 rounded-xl">
+                <p className="text-gray-300 text-center text-sm">
                   <strong className="text-orange-400">Instant Delivery:</strong> Your message will be automatically sent
                   to both our WhatsApp and Telegram support channels. We'll respond within 1 hour during business hours!
                 </p>
@@ -1391,53 +1416,53 @@ ${formData.message}
         </div>
       </section>
 
-      {/* Ultimate Footer */}
-      <footer className="bg-gradient-to-b from-[#0f1419] to-[#000000] text-gray-400 py-20 px-4 border-t border-orange-400/20">
+      {/* Footer */}
+      <footer className="bg-gradient-to-b from-[#0f1419] to-[#000000] text-gray-400 py-16 px-4 border-t border-orange-400/20">
         <div className="container mx-auto">
-          <div className="grid lg:grid-cols-4 gap-12 mb-16">
-            {/* Enhanced Company Info */}
+          <div className="grid lg:grid-cols-4 gap-10 mb-12">
             <div className="lg:col-span-2">
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-3 mb-6">
                 <div className="relative">
                   <Image
                     src="/nextlog-logo.png"
                     alt="NextLog FullService Logo"
-                    width={72}
-                    height={72}
+                    width={64}
+                    height={64}
                     className="rounded-full ring-4 ring-orange-400/40 shadow-2xl"
                   />
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full border-4 border-[#0f1419] animate-pulse"></div>
+                  <div className="absolute -top-2 -right-2 w-5 h-5 bg-green-400 rounded-full border-4 border-[#0f1419] animate-pulse"></div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-white">NextLog</span>
-                  <span className="text-sm text-orange-400 font-bold tracking-[0.2em] uppercase">FullService Pro</span>
+                <div className="flex flex-col leading-none">
+                  <span className="text-2xl font-bold text-white">NextLog</span>
+                  <span className="text-[11px] text-orange-400 font-bold tracking-[0.24em] uppercase">
+                    FullService Pro
+                  </span>
                 </div>
               </div>
-              <p className="text-gray-300 mb-8 leading-relaxed max-w-lg text-lg">
+              <p className="text-gray-300 mb-6 leading-relaxed max-w-lg">
                 Your trusted ELD solution partner working exclusively on your behalf. We select and implement the best
                 ELD systems available, trusted by over 5,000 carriers nationwide with professional-grade service since
                 2017.
               </p>
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center gap-5">
                 <div className="flex items-center gap-2 text-green-400">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="font-bold">Online 24/7</span>
+                  <div className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="font-bold text-sm">Online 24/7</span>
                 </div>
                 <div className="flex items-center gap-2 text-orange-400">
-                  <Shield size={20} />
-                  <span className="font-bold">FMCSA Certified</span>
+                  <Shield size={18} />
+                  <span className="font-bold text-sm">FMCSA Certified</span>
                 </div>
                 <div className="flex items-center gap-2 text-blue-400">
-                  <Award size={20} />
-                  <span className="font-bold">SOC 2 Compliant</span>
+                  <Award size={18} />
+                  <span className="font-bold text-sm">SOC 2 Compliant</span>
                 </div>
               </div>
             </div>
 
-            {/* Services */}
             <div>
-              <h3 className="text-white font-bold text-xl mb-8">Professional Services</h3>
-              <ul className="space-y-4">
+              <h3 className="text-white font-bold text-lg mb-5">Professional Services</h3>
+              <ul className="space-y-3">
                 {[
                   "ELD Installation & Setup",
                   "DOT Compliance Management",
@@ -1447,7 +1472,7 @@ ${formData.message}
                   "Audit Protection Services",
                 ].map((item) => (
                   <li key={item}>
-                    <a href="#services" className="text-gray-400 hover:text-orange-400 transition-colors text-lg">
+                    <a href="#services" className="text-gray-400 hover:text-orange-400 transition-colors">
                       {item}
                     </a>
                   </li>
@@ -1455,10 +1480,9 @@ ${formData.message}
               </ul>
             </div>
 
-            {/* Contact & Support */}
             <div>
-              <h3 className="text-white font-bold text-xl mb-8">Expert Support</h3>
-              <ul className="space-y-5">
+              <h3 className="text-white font-bold text-lg mb-5">Expert Support</h3>
+              <ul className="space-y-4">
                 <li className="flex items-center gap-3">
                   <MessageCircle size={18} className="text-blue-400" />
                   <div>
@@ -1468,7 +1492,7 @@ ${formData.message}
                     >
                       Telegram Support
                     </a>
-                    <p className="text-gray-500 text-sm">Instant messaging</p>
+                    <p className="text-gray-500 text-xs">Instant messaging</p>
                   </div>
                 </li>
                 <li className="flex items-center gap-3">
@@ -1480,7 +1504,7 @@ ${formData.message}
                     >
                       WhatsApp Professional
                     </a>
-                    <p className="text-gray-500 text-sm">Voice & video calls</p>
+                    <p className="text-gray-500 text-xs">Voice & video calls</p>
                   </div>
                 </li>
                 <li className="flex items-center gap-3">
@@ -1492,26 +1516,25 @@ ${formData.message}
                     >
                       Enterprise Email
                     </a>
-                    <p className="text-gray-500 text-sm">Professional support</p>
+                    <p className="text-gray-500 text-xs">Professional support</p>
                   </div>
                 </li>
                 <li className="flex items-center gap-3">
                   <MapPin size={18} className="text-purple-400" />
                   <div>
                     <span className="text-gray-400 font-medium">National Coverage</span>
-                    <p className="text-gray-500 text-sm">All 50 States + Canada</p>
+                    <p className="text-gray-500 text-xs">All 50 States + Canada</p>
                   </div>
                 </li>
               </ul>
             </div>
           </div>
 
-          {/* Bottom Footer */}
-          <div className="border-t border-gray-700 pt-12">
-            <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
-              <div className="flex flex-col lg:flex-row items-center gap-6 text-sm">
+          <div className="border-t border-gray-700 pt-8">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+              <div className="flex flex-col lg:flex-row items-center gap-5 text-xs">
                 <p className="text-gray-400">&copy; 2025 NextLog FullService — All rights reserved</p>
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4">
                   <span className="text-orange-400">•</span>
                   <span className="text-gray-400">FMCSA Registered Provider</span>
                   <span className="text-orange-400">•</span>
@@ -1520,7 +1543,7 @@ ${formData.message}
                   <span className="text-gray-400">ISO 27001 Compliant</span>
                 </div>
               </div>
-              <div className="flex items-center gap-8 text-sm">
+              <div className="flex items-center gap-6 text-xs">
                 <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors font-medium">
                   Privacy Policy
                 </a>
