@@ -1717,7 +1717,6 @@ ${formData.message}
           </div>
         </div>
       </footer>
-      <div>GWs-BeW-Y6U-</div>
     </div>
   )
 }
