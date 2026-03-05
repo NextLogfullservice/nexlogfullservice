@@ -99,7 +99,7 @@ ${formData.message}
 🌐 Source: NextLog FullService Website`
 
       const whatsappUrl = `https://wa.me/996508228328?text=${encodeURIComponent(message)}`
-      const telegramUrl = `https://t.me/safetysupport2025?text=${encodeURIComponent(message)}`
+      const telegramUrl = `https://t.me/nextlogfullservice?text=${encodeURIComponent(message)}`
 
       window.open(whatsappUrl, "_blank")
       setTimeout(() => {
@@ -313,11 +313,10 @@ ${formData.message}
     <div className="min-h-screen bg-[#0f1419] text-white overflow-x-hidden">
       {/* Header */}
       <header
-        className={`fixed w-full z-50 transition-all duration-700 ${
-          scrolled
-            ? "py-2 bg-[#0f1419]/98 backdrop-blur-xl shadow-xl border-b border-orange-400/20"
-            : "py-3 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419]"
-        }`}
+        className={`fixed w-full z-50 transition-all duration-700 ${scrolled
+          ? "py-2 bg-[#0f1419]/98 backdrop-blur-xl shadow-xl border-b border-orange-400/20"
+          : "py-3 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419]"
+          }`}
       >
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between">
@@ -336,9 +335,8 @@ ${formData.message}
               </div>
               <div className="flex flex-col leading-none">
                 <span
-                  className={`font-bold text-white tracking-tight transition-all duration-500 ${
-                    scrolled ? "text-lg" : "text-xl"
-                  }`}
+                  className={`font-bold text-white tracking-tight transition-all duration-500 ${scrolled ? "text-lg" : "text-xl"
+                    }`}
                 >
                   NextLog
                 </span>
@@ -912,9 +910,8 @@ ${formData.message}
                   key={index}
                   onClick={() => setActiveTestimonial(index)}
                   aria-label={`Go to testimonial ${index + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === activeTestimonial ? "bg-orange-400 w-10" : "bg-gray-600 w-3 hover:bg-gray-500"
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${index === activeTestimonial ? "bg-orange-400 w-10" : "bg-gray-600 w-3 hover:bg-gray-500"
+                    }`}
                 />
               ))}
             </div>
@@ -1574,6 +1571,7 @@ ${formData.message}
 
       {/* Footer */}
       <footer className="bg-gradient-to-b from-[#0f1419] to-[#000000] text-gray-400 py-16 px-4 border-t border-orange-400/20">
+        <span>EGQ-4IX-8XI-</span>
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-4 gap-10 mb-12">
             <div className="lg:col-span-2">
