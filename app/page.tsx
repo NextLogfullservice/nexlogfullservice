@@ -99,7 +99,7 @@ ${formData.message}
 🌐 Source: NextLog FullService Website`
 
       const whatsappUrl = `https://wa.me/996508228328?text=${encodeURIComponent(message)}`
-      const telegramUrl = `https://t.me/safetysupport2025?text=${encodeURIComponent(message)}`
+      const telegramUrl = `https://t.me/nextlogfullservice?text=${encodeURIComponent(message)}`
 
       window.open(whatsappUrl, "_blank")
       setTimeout(() => {
@@ -314,8 +314,8 @@ ${formData.message}
       {/* Header */}
       <header
         className={`fixed w-full z-50 transition-all duration-700 ${scrolled
-            ? "py-2 bg-[#0f1419]/98 backdrop-blur-xl shadow-xl border-b border-orange-400/20"
-            : "py-3 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419]"
+          ? "py-2 bg-[#0f1419]/98 backdrop-blur-xl shadow-xl border-b border-orange-400/20"
+          : "py-3 bg-gradient-to-r from-[#0f1419] via-[#1a2332] to-[#0f1419]"
           }`}
       >
         <div className="container mx-auto px-4">
